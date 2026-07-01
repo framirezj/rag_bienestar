@@ -1,0 +1,13 @@
+rag-bienestar/
+├── data/                  # Documentos de origen (PDFs, TXT, etc.)
+│   └── bienestar_docs/    # Ejemplo de carpeta de documentos
+├── vectorstore/           # Carpeta local para guardar el índice FAISS creado
+├── src/                   # Lógica central del sistema (Python modules)
+│   ├── __init__.py
+│   ├── database.py        # Procesamiento de docs, fragmentación y creación del índice FAISS
+│   └── rag.py             # Configuración del LLM, embeddings y cadena de consulta
+├── app.py                 # Interfaz de usuario (Streamlit)
+├── .env                   # Variables de entorno (API Keys de Google, OpenAI, etc. - NO SUBIR A GIT)
+├── .gitignore             # Configuraciones ignoradas por Git
+├── pyproject.toml         # Configuración del proyecto y dependencias de uv
+└── uv.lock                # Archivo de bloqueo de dependencias de uv
