@@ -14,15 +14,27 @@ def build_vector_store():
     y guarda la base de datos vectorial FAISS en 'vectorstore/'.
     """
     # 1. Cargar documentos
-    # loader = PyPDFDirectoryLoader(DATA_DIR)
-    # docs = loader.load()
+    loader = PyPDFDirectoryLoader(DATA_DIR)
+    docs = loader.load()
     
     # 2. Fragmentar textos
-    # text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    # splits = text_splitter.split_documents(docs)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    splits = text_splitter.split_documents(docs)
     
     # 3. Embeddings y Vector Store
-    # embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-    # db = FAISS.from_documents(splits, embeddings)
-    # db.save_local(VS_DIR)
-    pass
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    db = FAISS.from_documents(splits, embeddings)
+    db.save_local(VS_DIR)
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    print("Iniciando la carga de documentos y generación de embeddings...")
+    try:
+        build_vector_store()
+        print("¡Base de datos vectorial creada con éxito y guardada en 'vectorstore/'!")
+    except Exception as e:
+        print(f"Error al construir la base de datos vectorial: {e}")
+
+#uv run python src/database.py
