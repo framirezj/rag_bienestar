@@ -18,13 +18,13 @@ def build_vector_store():
     docs = loader.load()
     
     # 2. Fragmentar textos
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    splits = text_splitter.split_documents(docs)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
+    chunks = text_splitter.split_documents(docs)
     
     # 3. Embeddings y Vector Store
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
-    db = FAISS.from_documents(splits, embeddings)
-    db.save_local(VS_DIR)
+    model_embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    vector_store = FAISS.from_documents(chunks, model_embeddings)
+    vector_store.save_local(VS_DIR)
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
