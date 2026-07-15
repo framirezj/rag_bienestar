@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  rag-app:
+    build: .
+    container_name: rag_streamlit_app
+    restart: always
+    ports:
+      # Mapea el puerto 80 de la máquina virtual (OCI) al puerto 8501 del contenedor (Streamlit)
+      - "80:8501"
+    env_file:
+      # Docker Compose cargará automáticamente las variables de este archivo en el contenedor
+      - .env
+    volumes:
+      # Si tu RAG guarda el índice FAISS en un archivo local en disco, 
+      # esto asegura que no se pierda al reiniciar o actualizar el contenedor.
+      - ./vectorstore:/app/vectorstore
