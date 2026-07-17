@@ -1,0 +1,41 @@
+name: Deploy RAG to Oracle Cloud (OCI)
+
+# Este flujo se activará cada vez que hagas un push a la rama 'main'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Usamos una acción comunitaria muy popular y segura para ejecutar comandos vía SSH
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.OCI_HOST }}
+          username: ${{ secrets.OCI_USERNAME }}
+          key: ${{ secrets.OCI_KEY }}
+          port: ${{ secrets.OCI_PORT }}
+          # Tiempo límite de espera para la conexión SSH (30 minutos para compilaciones lentas)
+          timeout: 30m
+          script: |
+            # 1. Navegar a la carpeta de la aplicación en el servidor de OCI
+            cd ~/rag_bienestar
+
+            # 2. Descargar los últimos cambios desde GitHub
+            git pull origin main
+
+            # 3. Compilar la nueva imagen (aprovechando uv dentro del Dockerfile) y reiniciar la app
+            # --build fuerza a compilar con los nuevos cambios de código.
+            # -d arranca los contenedores en segundo plano.
+            docker compose down
+            docker compose up --build -d
+
+            # 4. Limpieza preventiva de imágenes huérfanas/antiguas para no saturar el disco de la VM
+            docker image prune -f
