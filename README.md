@@ -64,6 +64,7 @@ end
 
 1. **Interfaz del Asistente en Funcionamiento**:
 <img width="889" height="868" alt="1" src="https://github.com/user-attachments/assets/43ed3718-99cd-4ad9-9c42-aa06bdd8fe7c" />
+---
 <img width="841" height="568" alt="2" src="https://github.com/user-attachments/assets/1d976e92-92c5-4e17-8dee-cd589a706c31" />
 
 2. **Pipeline de GitHub Actions Exitoso**:
