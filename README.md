@@ -61,16 +61,14 @@ graph TD
 ## 📸 Capturas del Proyecto (Sugerencias visuales)
 
 1. **Interfaz del Asistente en Funcionamiento**:
-
-![Interfaz de Usuario](assets/Capture1.PNG)
+<img width="889" height="868" alt="1" src="https://github.com/user-attachments/assets/43ed3718-99cd-4ad9-9c42-aa06bdd8fe7c" />
+<img width="841" height="568" alt="2" src="https://github.com/user-attachments/assets/1d976e92-92c5-4e17-8dee-cd589a706c31" />
 
 2. **Pipeline de GitHub Actions Exitoso**:
-
-![Pipeline de GitHub Actions Exitoso](assets/Capture2.PNG)
+<img width="1661" height="520" alt="3" src="https://github.com/user-attachments/assets/0a170562-5ae1-48ec-b55b-d5774e1fa969" />
 
 3. **Consola de la Máquina Virtual en OCI / Docker corriendo**:
-
-## ![Consola de la Máquina Virtual en OCI / Docker corriendo](assets/Capture3.PNG)
+<img width="1222" height="247" alt="4" src="https://github.com/user-attachments/assets/70ace575-4a39-4f45-91cf-22da74b6138f" />
 
 ## 🚀 Guía de Instalación y Uso Local
 
