@@ -18,21 +18,23 @@ Fue desarrollado como respuesta al challenge del programa **Oracle Next Educatio
 El flujo de información y procesamiento de consultas sigue el siguiente diseño:
 
 ```mermaid
-graph TD
-    subgraph Ingesta y Vectorización (Fase de Preparación)
-        A[Documentos PDF de Bienestar en /data] --> B[PyPDFDirectoryLoader]
-        B --> C[RecursiveCharacterTextSplitter]
-        C --> D[GoogleGenerativeAIEmbeddings]
-        D --> E[(Base de Datos Vectorial FAISS)]
-    end
 
-    subgraph Consulta y Generación (Tiempo de Ejecución)
-        F[Usuario en Streamlit] -->|Pregunta| G[Retriever de FAISS]
-        E -->|Contexto Relevante k=4| H[Prompt Template]
-        G --> H
-        H -->|Prompt Enriquecido| I[LLM Gemini 2.5 Flash]
-        I -->|Respuesta Precisa y Estructurada| J[Interfaz de Usuario Streamlit]
-    end
+graph TD
+
+subgraph Preparacion
+    A[PDFs en data] --> B[PyPDFDirectoryLoader]
+    B --> C[Text Splitter]
+    C --> D[Google AI Embeddings]
+    D --> E[(FAISS)]
+end
+
+subgraph Consulta
+    F[Usuario] --> G[Retriever]
+    E --> G
+    G --> H[Prompt]
+    H --> I[Gemini 2.5 Flash]
+    I --> J[Respuesta en Streamlit]
+end
 ```
 
 ---
